@@ -1,0 +1,45 @@
+<div class="container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
+  <div class="card">
+    <h4 class="card-header">Images</h4>
+
+    <div class="card-body">
+
+      <div class="row">
+        <!-- <a href="#" class="mr-sm-4" (click)="filter('approved')">Approved</a>
+        <a href="#" class="mr-sm-4" (click)="filter('rejected')">Rejected</a>
+        <a href="#" class="mr-sm-4" (click)="filter('pending')">Pending</a> --> 
+
+        <ngb-tabset (tabChange)="tabChanged($event)">
+          <ngb-tab [title]="approvedTitle" id="Approved">
+            <ng-template ngbTabContent></ng-template> 
+          </ngb-tab>
+          <ngb-tab [title]="rejectedTitle" id="Rejected">
+            <ng-template ngbTabContent></ng-template>
+          </ngb-tab>
+          <ngb-tab [title]="pendingTitle" id="Pending">
+            <ng-template ngbTabContent></ng-template> 
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3" *ngFor="let img of images">
+          <div class="card text-center">
+            <div class="card-body card-block-img-container">
+              <span class="img-container">
+                <img [src]="img.blobUri" class="img-thumbnail">
+              </span>
+            </div>
+            <div class="card-body">
+              <a class="btn btn-primary btn-sm mr-sm-2" [routerLink]="['/images', img.id]">View</a> 
+              <button class="btn btn-danger btn-sm" (click)="deleteImage(img.id)">Delete</button> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

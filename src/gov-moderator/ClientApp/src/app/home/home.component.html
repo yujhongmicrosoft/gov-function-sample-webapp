@@ -1,0 +1,34 @@
+<div>
+  <div class="jumbotron">
+    <h1 class="display-3">Azure Government Image Moderator</h1>
+    <hr class="my-4" />
+    <p>
+      Image moderator for Microsoft Azure Government.
+    </p>
+  </div>
+
+  <div class="card-group">
+    <div class="card">
+      <h4 class="card-header">Images</h4>
+      <div class="card-body">
+        <div class="card-text">
+          Browse existing images here.
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-primary" [routerLink]="['/images']">Images</a>
+      </div>
+    </div>
+    <div class="card">
+      <h4 class="card-header">Upload</h4>
+      <div class="card-body">
+        <div class="card-text">
+          Upload new images here.
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-success" [routerLink]="['/upload']">Upload</a>
+      </div>
+    </div>
+
+  </div>
