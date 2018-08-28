@@ -1,5 +1,6 @@
 ﻿using gov_moderator.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using Microsoft.WindowsAzure.Storage.Queue;
@@ -26,6 +27,12 @@ namespace gov_moderator.Services
             this.queueClient = queueClient;
         }
 
+        public async Task Initialize()
+        {
+            await this.docClient.CreateDatabaseIfNotExistsAsync(new Database { Id = DocDbNames.DbName });
+            await this.docClient.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(DocDbNames.DbName), new DocumentCollection { Id = DocDbNames.Images });
+
+        }
         public async Task<List<ImageFile>> GetImages()
         {
             IDocumentQuery<ImageFile> query = this.docClient.CreateDocumentQuery<ImageFile>(DocDbNames.Images.ToDocCollectionUri())
@@ -68,6 +75,7 @@ namespace gov_moderator.Services
             // 3. Queue message
             var queueMsg = new { BlobName = recordId, DocumentId = recordId };
             var queue = this.queueClient.GetQueueReference("image-queue");
+            await queue.CreateIfNotExistsAsync();
             await queue.AddMessageAsync(new CloudQueueMessage(JsonConvert.SerializeObject(queueMsg)));
 
             return recordId;
