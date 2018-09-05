@@ -113,7 +113,7 @@
                         "[resourceId('Microsoft.Web/sites', variables('webAppName'))]"
                     ],
                     "properties": {
-                        "RepoUrl": "https://github.com/yujhongmicrosoft/gov-function-sample.git",
+                        "RepoUrl": "https://github.com/yujhongmicrosoft/gov-function-sample-webapp.git",
                         "branch": "master",
                         "IsManualIntegration": true
                     }
