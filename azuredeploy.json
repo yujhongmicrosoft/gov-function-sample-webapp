@@ -107,7 +107,7 @@
                     "name": "web",
                     "apiVersion": "2015-08-01",
                     "properties": {
-                        "RepoUrl": "https://github.com/yujhongmicrosoft/gov-function-sample-webapp.git",
+                        "RepoUrl": "https://github.com/yujhongmicrosoft/gov-function-sample.git",
                         "branch": "master",
                         "IsManualIntegration": true
                     },
